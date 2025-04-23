@@ -102,13 +102,17 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.opt.showmode = true
+-- Don't show the status line
+vim.opt.laststatus = 0
+-- Don't show the line nums below status-line
+vim.opt.ruler = false
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -867,28 +871,61 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
+  {
+    'arnamak/stay-centered.nvim',
+  },
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+  {
+    'baliestri/aura-theme',
+    lazy = false,
+    priority = 1000,
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. '/packages/neovim')
+      vim.cmd [[colorscheme aura-soft-dark]]
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
+      -- Adjust highlight settings
+      vim.cmd [[
+        highlight Visual guibg=#3d375e guifg=NONE gui=NONE
+        highlight NormalFloat guibg=NONE
+        highlight WinSeparator guifg=NvimDarkGrey4 guibg=NONE
+        highlight LspReferenceText guibg=NONE
+        highlight SnacksPickerTitle guifg=NvimBlue
 
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+        " highlight TSNone guifg=#ffca85
+      ]]
     end,
   },
+
+  -- { -- You can easily change to a different colorscheme.
+  --   -- Change the name of the colorscheme plugin below, and then
+  --   -- change the command in the config to whatever the name of that colorscheme is.
+  --   --
+  --   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  --   -- 'folke/tokyonight.nvim',
+  --   -- priority = 1000, -- Make sure to load this before all the other start plugins.
+  --   -- config = function()
+  --   --   ---@diagnostic disable-next-line: missing-fields
+  --   --   require('tokyonight').setup {
+  --   --     styles = {
+  --   --       comments = { italic = false }, -- Disable italics in comments
+  --   --     },
+  --   --   }
+  --   --
+  --   --   -- Load the colorscheme here.
+  --   --   -- Like many other themes, this one has different styles, and you could load
+  --   --   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --   --   vim.cmd.colorscheme 'tokyonight-night'
+  --   -- end,
+  --   -- {
+  --
+  --   'baliestri/aura-theme',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function(plugin)
+  --     vim.opt.rtp:append(plugin.dir .. '/packages/neovim')
+  --     vim.cmd.colorscheme 'aura-soft-dark'
+  --   end,
+  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
