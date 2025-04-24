@@ -1,6 +1,14 @@
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+vim.api.nvim_create_user_command('Qb', function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.cmd 'q'
+  if #vim.fn.win_findbuf(bufnr) == 0 then
+    vim.cmd('bd ' .. bufnr)
+  end
+end, {})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`

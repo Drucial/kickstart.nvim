@@ -2,8 +2,6 @@
 --  See `:help vim.opt`
 --  See `:help vim.g`
 
--- Set <space> as the leader key
--- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -12,7 +10,6 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = false
 
 -- [[ Setting options ]]
--- See `:help vim.opt`
 -- NOTE: For more options, you can see `:help option-list`
 
 -- Make line numbers default
@@ -24,9 +21,9 @@ vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 
 -- Don't show the status line
-vim.opt.laststatus = 0
+-- vim.opt.laststatus = 0
 -- Show the mode, since the status line is hidden
-vim.opt.showmode = true
+-- vim.opt.showmode = true
 -- Don't show the line nums below status-line
 vim.opt.ruler = false
 
@@ -80,3 +77,6 @@ vim.opt.scrolloff = 16
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.opt.confirm = true
+
+-- line wrapping
+vim.opt.wrap = false -- disable line wrapping

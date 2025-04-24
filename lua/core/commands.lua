@@ -1,15 +1,33 @@
--- Override :q to close the current buffer
-vim.api.nvim_create_user_command('Q', 'bd', {})
-
--- Override :wq to write and close the current buffer
-vim.api.nvim_create_user_command('Wq', 'w | bd', {})
-
--- Override :wqa to write all and quit all buffers
-vim.api.nvim_create_user_command('Wqa', 'wa | qa', {})
-
--- Create command-line abbreviations to map the lowercase commands to the new uppercase commands
-vim.cmd [[
-  cabbrev q Q
-  cabbrev wq Wq
-  cabbrev wqa Wqa
-]]
+-- -- Function to check if the current buffer is the last buffer
+-- local function is_last_buffer()
+--   return #vim.fn.getbufinfo { bufloaded = true } == 1
+-- end
+--
+-- -- Override :q to close the current buffer, and exit if it's the last buffer
+-- vim.api.nvim_create_user_command('Q', function()
+--   if is_last_buffer() then
+--     vim.cmd 'quit'
+--   else
+--     vim.cmd 'bdelete'
+--   end
+-- end, {})
+--
+-- -- Override :wq to write and close the current buffer, and exit if it's the last buffer
+-- vim.api.nvim_create_user_command('Wq', function()
+--   vim.cmd 'write'
+--   if is_last_buffer() then
+--     vim.cmd 'quit'
+--   else
+--     vim.cmd 'bdelete'
+--   end
+-- end, {})
+--
+-- -- Override :wqa to write all and quit all buffers
+-- vim.api.nvim_create_user_command('Wqa', 'wa | qa', {})
+--
+-- -- Create command-line abbreviations to map the lowercase commands to the new uppercase commands
+-- vim.cmd [[
+--   cabbrev q Q
+--   cabbrev wq Wq
+--   cabbrev wqa Wqa
+-- ]]
