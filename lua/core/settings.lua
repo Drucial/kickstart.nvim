@@ -3,11 +3,12 @@
 --  See `:help vim.g`
 
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.mapleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
+vim.opt.termguicolors = true
 
 -- [[ Setting options ]]
 -- NOTE: For more options, you can see `:help option-list`
@@ -68,7 +69,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 16

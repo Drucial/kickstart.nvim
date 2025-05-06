@@ -28,6 +28,16 @@ vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', { desc = 'Go
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Save file
+vim.keymap.set({ 'n', 'v', 'i' }, '<D-s>', function()
+  vim.cmd 'w'
+end, { desc = 'Save file' })
+
+-- quitfile
+vim.keymap.set({ 'n', 'v', 'i' }, '<D-S>', function()
+  vim.cmd 'Wq'
+end, { desc = 'Quit file' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -39,9 +49,26 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Move current line down in normal mode
+vim.keymap.set('n', '<A-Down>', ':m .+1<CR>==', { desc = 'Move line down' })
+
+-- Move current line up in normal mode
+vim.keymap.set('n', '<A-Up>', ':m .-2<CR>==', { desc = 'Move line up' })
+
+-- Move highlighted lines down in visual mode
+vim.keymap.set('v', '<A-Down>', ":m '>+1<CR>gv=gv", { desc = 'Move highlighted lines down' })
+
+-- Move highlighted lines up in visual mode
+vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv", { desc = 'Move highlighted lines up' })
+
 -- Centered page up and page down
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half a page' })
+vim.keymap.set('n', '<C-up>', '<C-u>zz', { desc = 'Scroll up half a page' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down half a page' })
+vim.keymap.set('n', '<C-down>', '<C-d>zz', { desc = 'Scroll down half a page' })
+
+-- Centered page for n resulats from search
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Neext search result in centered page' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')

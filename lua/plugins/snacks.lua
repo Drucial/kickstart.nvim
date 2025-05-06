@@ -1,6 +1,13 @@
 return {
   'snacks.nvim',
   opts = {
+    indent = { enabled = true },
+    input = { enabled = true },
+    notifier = { enabled = true },
+    scope = { enabled = true },
+    statuscolumn = { enabled = false }, -- we set this in options.lua
+    -- toggle = { map = LazyVim.safe_keymap_set },
+    words = { enabled = true },
     -- for mini.animate 👇
     scroll = { enabled = false },
     dashboard = {
@@ -42,8 +49,8 @@ return {
             desc = 'Config',
             action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
           },
-          { icon = ' ', key = 's', desc = 'Restore Session', section = 'session' },
-          { icon = ' ', key = 'x', desc = 'Lazy Extras', action = ':LazyExtras' },
+          -- { icon = ' ', key = 's', desc = 'Restore Session', section = 'session' },
+          -- { icon = ' ', key = 'x', desc = 'Lazy Extras', action = ':LazyExtras' },
           { icon = '󰒲 ', key = 'l', desc = 'Lazy', action = ':Lazy' },
           { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
         },
